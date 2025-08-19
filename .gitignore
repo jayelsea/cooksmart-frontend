@@ -1,0 +1,86 @@
+# Android/IntelliJ
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/app/build/
+*.iml
+*.apk
+*.ap_*
+*.dex
+*.class
+*.log
+*.hprof
+*.lock
+*.tmp
+*.orig
+*.rej
+*.swp
+*.swo
+*.swn
+*.bak
+*.backup
+*.keystore
+*.jks
+*.apk
+*.ap_*
+*.dex
+*.class
+*.log
+*.hprof
+*.lock
+*.tmp
+*.orig
+*.rej
+*.swp
+*.swo
+*.swn
+*.bak
+*.backup
+*.keystore
+*.jks
+captures/
+.externalNativeBuild/
+.cxx/
+.idea/
+*.ipr
+*.iws
+*.iml
+out/
+# Gradle
+.gradle/
+build/
+# Local configuration files
+local.properties
+# Log files
+*.log
+# Android Studio
+.idea/
+*.iml
+# Mac OS
+.DS_Store
+# Windows
+Thumbs.db
+# Others
+*.apk
+*.ap_*
+*.dex
+*.class
+*.log
+*.hprof
+*.lock
+*.tmp
+*.orig
+*.rej
+*.swp
+*.swo
+*.swn
+*.bak
+*.backup
+*.keystore
+*.jks
+captures/
+.externalNativeBuild/
+.cxx/
+
