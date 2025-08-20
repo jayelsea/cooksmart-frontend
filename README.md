@@ -48,6 +48,5 @@ CookSmart es una aplicación Android para gestionar y visualizar recetas de coci
 
 ---
 
-¡Listo! Ahora puedes trabajar y ejecutar CookSmart en cualquier dispositivo con Android Studio.
 
-# cooksmart-frontend
+
