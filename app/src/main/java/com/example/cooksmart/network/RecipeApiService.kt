@@ -34,7 +34,17 @@ interface RecipeApiService {
     @POST("api/auth/register")
     suspend fun register(@Body request: RegisterRequest): Response<RegisterResponse>
 
-    // Recetas aleatorias desde TheMealDB
+
     @GET("https://www.themealdb.com/api/json/v1/1/random.php")
     suspend fun getRandomRecipe(): Response<TheMealDbResponse>
+
+    @POST("api/users/{userId}/favorites")
+    suspend fun addFavorite(@Path("userId") userId: Long, @Body recipeId: Long): Response<Unit>
+
+    @GET("api/users/{userId}/favorites")
+    suspend fun getFavorites(@Path("userId") userId: Long): Response<List<Long>>
+
+
+    @POST("api/users")
+    suspend fun createUser(@Body request: RegisterRequest): Response<RegisterResponse>
 }

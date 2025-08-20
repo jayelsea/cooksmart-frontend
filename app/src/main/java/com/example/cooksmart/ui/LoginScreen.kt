@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.cooksmart.network.RecipeApiClient
 import kotlinx.coroutines.launch
@@ -104,83 +105,107 @@ fun LoginScreen(
         ) {
             Card(
                 modifier = Modifier
-                    .fillMaxWidth(0.95f)
+                    .width(280.dp)
                     .padding(8.dp)
-                    .graphicsLayer { shadowElevation = 16f }, // Sombra sutil
-                shape = RoundedCornerShape(32.dp), // Esquinas más redondeadas
-                colors = CardDefaults.cardColors(containerColor = Color.White), // Fondo blanco original
+                    .graphicsLayer { shadowElevation = 16f },
+                shape = RoundedCornerShape(18.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White),
                 elevation = CardDefaults.cardElevation(16.dp)
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(40.dp)
+                    modifier = Modifier.padding(16.dp)
                 ) {
                     Text(
                         text = "CookSmart",
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = MaterialTheme.colorScheme.primary // Color original
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color(0xFF000000),
+                        modifier = Modifier.padding(bottom = 10.dp),
+                        textAlign = TextAlign.Center
                     )
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
                     OutlinedTextField(
                         value = email,
                         onValueChange = {
                             email = it
                             emailError = null
                         },
-                        label = { Text("Email") },
+                        label = { Text("Email", color = Color(0xFF000000)) },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
-                        leadingIcon = { Icon(Icons.Filled.Email, contentDescription = "Email") },
-                        isError = emailError != null
+                        leadingIcon = { Icon(Icons.Filled.Email, contentDescription = "Email", tint = Color(0xFFFFD600)) },
+                        isError = emailError != null,
+                        colors = TextFieldDefaults.colors(
+                            focusedTextColor = Color(0xFF000000),
+                            unfocusedTextColor = Color(0xFF000000),
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            focusedIndicatorColor = Color(0xFFFFD600),
+                            unfocusedIndicatorColor = Color(0xFF000000),
+                            focusedLabelColor = Color(0xFF000000),
+                            unfocusedLabelColor = Color(0xFF000000),
+                            cursorColor = Color(0xFF000000)
+                        )
                     )
                     if (emailError != null) {
-                        Text(emailError!!, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+                        Text(emailError!!, color = Color.Red, style = MaterialTheme.typography.bodySmall)
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(8.dp))
                     OutlinedTextField(
                         value = password,
                         onValueChange = {
                             password = it
                             passwordError = null
                         },
-                        label = { Text("Contraseña") },
+                        label = { Text("Contraseña", color = Color(0xFF000000)) },
                         singleLine = true,
                         visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                         modifier = Modifier.fillMaxWidth(),
-                        leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = "Contraseña") },
+                        leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = "Contraseña", tint = Color(0xFFFFD600)) },
                         trailingIcon = {
                             IconButton(onClick = { showPassword = !showPassword }) {
                                 Icon(
                                     imageVector = if (showPassword) Icons.Filled.Visibility else Icons.Filled.VisibilityOff,
-                                    contentDescription = if (showPassword) "Ocultar contraseña" else "Mostrar contraseña"
+                                    contentDescription = if (showPassword) "Ocultar contraseña" else "Mostrar contraseña",
+                                    tint = Color(0xFFFFD600)
                                 )
                             }
                         },
-                        isError = passwordError != null
+                        isError = passwordError != null,
+                        colors = TextFieldDefaults.colors(
+                            focusedTextColor = Color(0xFF000000),
+                            unfocusedTextColor = Color(0xFF000000),
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            focusedIndicatorColor = Color(0xFFFFD600),
+                            unfocusedIndicatorColor = Color(0xFF000000),
+                            focusedLabelColor = Color(0xFF000000),
+                            unfocusedLabelColor = Color(0xFF000000),
+                            cursorColor = Color(0xFF000000)
+                        )
                     )
                     if (passwordError != null) {
-                        Text(passwordError!!, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
+                        Text(passwordError!!, color = Color.Red, style = MaterialTheme.typography.bodySmall)
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    if (errorMessage != null) {
-                        Text(text = errorMessage!!, color = MaterialTheme.colorScheme.error)
-                        Spacer(modifier = Modifier.height(8.dp))
-                    }
+                    Spacer(modifier = Modifier.height(14.dp))
                     Button(
                         onClick = { loginUser(email, password) },
-                        enabled = !isLoading,
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(16.dp)
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD600), contentColor = Color(0xFF000000))
                     ) {
-                        Text("Iniciar sesión", style = MaterialTheme.typography.titleMedium)
+                        if (isLoading) {
+                            CircularProgressIndicator(color = Color(0xFF000000), modifier = Modifier.size(18.dp))
+                        } else {
+                            Text("Iniciar sesión", color = Color(0xFF000000))
+                        }
                     }
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(6.dp))
                     TextButton(onClick = onNavigateToRegister) {
-                        Text("¿No tienes cuenta? Regístrate")
+                        Text("¿No tienes cuenta? Regístrate", color = Color(0xFF000000))
                     }
-                    if (isLoading) {
-                        Spacer(modifier = Modifier.height(16.dp))
-                        CircularProgressIndicator()
+                    errorMessage?.let {
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Text(text = it, color = Color.Red, textAlign = TextAlign.Center)
                     }
                 }
             }

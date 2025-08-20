@@ -59,69 +59,93 @@ fun RegisterScreen(onRegisterSuccess: () -> Unit, onBackToLogin: () -> Unit) {
         }
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-        contentAlignment = Alignment.Center
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Color(0xFFFFD600)
     ) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth(0.95f)
-                .padding(8.dp),
-            shape = RoundedCornerShape(24.dp),
-            elevation = CardDefaults.cardElevation(8.dp)
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(32.dp)
+            Card(
+                shape = RoundedCornerShape(18.dp),
+                modifier = Modifier
+                    .width(280.dp)
+                    .padding(8.dp),
+                colors = CardDefaults.cardColors(containerColor = Color.White)
             ) {
-                Text(
-                    text = "Crear cuenta",
-                    style = MaterialTheme.typography.headlineMedium,
-                    color = MaterialTheme.colorScheme.primary
-                )
-                Spacer(modifier = Modifier.height(24.dp))
-                OutlinedTextField(
-                    value = email,
-                    onValueChange = { email = it },
-                    label = { Text("Email") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(),
-                    leadingIcon = { Icon(Icons.Filled.Email, contentDescription = null) },
-                    isError = errorMessage != null
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                OutlinedTextField(
-                    value = password,
-                    onValueChange = { password = it },
-                    label = { Text("Contraseña") },
-                    singleLine = true,
-                    visualTransformation = PasswordVisualTransformation(),
-                    modifier = Modifier.fillMaxWidth(),
-                    leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = null) },
-                    isError = errorMessage != null
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                if (errorMessage != null) {
-                    Text(text = errorMessage!!, color = MaterialTheme.colorScheme.error)
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
-                Button(
-                    onClick = { registerUser(email, password) },
-                    enabled = !isLoading,
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp)
+                Column(
+                    modifier = Modifier
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Registrarse", style = MaterialTheme.typography.titleMedium)
-                }
-                Spacer(modifier = Modifier.height(8.dp))
-                TextButton(onClick = onBackToLogin) {
-                    Text("¿Ya tienes cuenta? Inicia sesión", color = MaterialTheme.colorScheme.primary)
-                }
-                if (isLoading) {
-                    Spacer(modifier = Modifier.height(16.dp))
-                    CircularProgressIndicator()
+                    Text(
+                        text = "Registro de usuario",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color(0xFF000000),
+                        modifier = Modifier.padding(bottom = 10.dp),
+                        textAlign = TextAlign.Center
+                    )
+                    OutlinedTextField(
+                        value = email,
+                        onValueChange = { email = it },
+                        label = { Text("Correo electrónico", color = Color(0xFF000000)) },
+                        leadingIcon = { Icon(Icons.Filled.Email, contentDescription = null, tint = Color(0xFFFFD600)) },
+                        singleLine = true,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = TextFieldDefaults.colors(
+                            focusedTextColor = Color(0xFF000000),
+                            unfocusedTextColor = Color(0xFF000000),
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            focusedIndicatorColor = Color(0xFFFFD600),
+                            unfocusedIndicatorColor = Color(0xFF000000),
+                            focusedLabelColor = Color(0xFF000000),
+                            unfocusedLabelColor = Color(0xFF000000),
+                            cursorColor = Color(0xFF000000)
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { password = it },
+                        label = { Text("Contraseña", color = Color(0xFF000000)) },
+                        leadingIcon = { Icon(Icons.Filled.Lock, contentDescription = null, tint = Color(0xFFFFD600)) },
+                        singleLine = true,
+                        visualTransformation = PasswordVisualTransformation(),
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = TextFieldDefaults.colors(
+                            focusedTextColor = Color(0xFF000000),
+                            unfocusedTextColor = Color(0xFF000000),
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            focusedIndicatorColor = Color(0xFFFFD600),
+                            unfocusedIndicatorColor = Color(0xFF000000),
+                            focusedLabelColor = Color(0xFF000000),
+                            unfocusedLabelColor = Color(0xFF000000),
+                            cursorColor = Color(0xFF000000)
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(14.dp))
+                    Button(
+                        onClick = { registerUser(email, password) },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD600), contentColor = Color(0xFF000000))
+                    ) {
+                        if (isLoading) {
+                            CircularProgressIndicator(color = Color(0xFF000000), modifier = Modifier.size(18.dp))
+                        } else {
+                            Text("Registrarse", color = Color(0xFF000000))
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(6.dp))
+                    TextButton(onClick = onBackToLogin) {
+                        Text("¿Ya tienes cuenta? Inicia sesión", color = Color(0xFF000000))
+                    }
+                    errorMessage?.let {
+                        Spacer(modifier = Modifier.height(6.dp))
+                        Text(text = it, color = Color.Red, textAlign = TextAlign.Center)
+                    }
                 }
             }
         }

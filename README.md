@@ -48,5 +48,25 @@ CookSmart es una aplicación Android para gestionar y visualizar recetas de coci
 
 ---
 
+## Endpoints disponibles
 
+### RecipeController (/api/recipes)
+- **GET /api/recipes**: Devuelve la lista de todas las recetas.
+- **GET /api/recipes/{id}**: Devuelve la receta con el ID especificado.
+- **POST /api/recipes**: Crea una nueva receta.
+- **PUT /api/recipes/{id}**: Actualiza la receta con el ID especificado.
+- **DELETE /api/recipes/{id}**: Elimina la receta con el ID especificado.
+- **GET /api/recipes/external?ingredients=...**: Devuelve recetas externas usando la API de Spoonacular, filtrando por ingredientes.
 
+### Usuarios y favoritos
+- **POST /api/auth/register**: Registro de usuario.
+- **POST /api/auth/login**: Inicio de sesión de usuario.
+- **POST /api/users**: Crear usuario (si es diferente al registro).
+- **POST /api/users/{userId}/favorites**: Añadir receta a favoritos.
+- **GET /api/users/{userId}/favorites**: Obtener recetas favoritas del usuario.
+
+## URLs base del backend
+- Si accedes desde la misma máquina: `http://localhost:8083/`
+- Si accedes desde otra máquina en la red: `http://192.168.1.64:8083/`
+
+---

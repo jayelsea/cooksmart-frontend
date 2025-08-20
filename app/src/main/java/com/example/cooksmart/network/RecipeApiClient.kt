@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RecipeApiClient {
-    private const val BASE_URL = "http://<IP_DE_TU_PC>:8080/"
+    private const val BASE_URL = "http://192.168.1.64:8080/"
 
     val apiService: RecipeApiService by lazy {
         Retrofit.Builder()

@@ -97,17 +97,37 @@ fun RecipeListScreen(
             .background(Color.White)
             .padding(horizontal = 16.dp)
     ) {
-        Spacer(modifier = Modifier.height(32.dp))
-        // Nombre de la app y mensaje motivacional
+        Spacer(modifier = Modifier.height(16.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "CookSmart",
+                style = MaterialTheme.typography.headlineLarge,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF222222),
+                modifier = Modifier.weight(1f)
+            )
+            Button(
+                onClick = onRequestLogin,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFD600), contentColor = Color(0xFF000000)),
+                shape = RoundedCornerShape(16.dp),
+                modifier = Modifier.height(36.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Favorite, // Puedes cambiar por Icons.Filled.Person si lo prefieres
+                    contentDescription = "Iniciar sesión",
+                    tint = Color(0xFF000000),
+                    modifier = Modifier.size(18.dp)
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Text("Iniciar sesión", color = Color(0xFF000000), fontSize = 14.sp)
+            }
+        }
+        Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "CookSmart",
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF222222),
-            modifier = Modifier.fillMaxWidth().padding(bottom = 4.dp)
-        )
-        Text(
-            text = "¡Comemos lo que queremos en casa! \uD83C\uDF54",
+            text = "¡Comemos lo que queremos en casa! 354",
             style = MaterialTheme.typography.titleMedium,
             color = Color(0xFF6C63FF),
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
